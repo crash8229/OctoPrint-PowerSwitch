@@ -11,16 +11,16 @@ from __future__ import absolute_import
 
 import octoprint.plugin
 
-class PowerswitchPlugin(octoprint.plugin.SettingsPlugin,
-                        octoprint.plugin.AssetPlugin,
-                        octoprint.plugin.TemplatePlugin):
+
+class PowerswitchPlugin(octoprint.plugin.StartupPlugin,
+						octoprint.plugin.SettingsPlugin,
+						octoprint.plugin.AssetPlugin,
+						octoprint.plugin.TemplatePlugin):
 
 	##~~ SettingsPlugin mixin
 
 	def get_settings_defaults(self):
-		return dict(
-			# put your plugin's default settings here
-		)
+		return dict(state="on")
 
 	##~~ AssetPlugin mixin
 
@@ -32,6 +32,9 @@ class PowerswitchPlugin(octoprint.plugin.SettingsPlugin,
 			css=["css/powerswitch.css"],
 			less=["less/powerswitch.less"]
 		)
+
+	def get_template_vars(self):
+		return dict(state=self._settings.get(["state"]))
 
 	##~~ Softwareupdate hook
 
@@ -59,7 +62,8 @@ class PowerswitchPlugin(octoprint.plugin.SettingsPlugin,
 # If you want your plugin to be registered within OctoPrint under a different name than what you defined in setup.py
 # ("OctoPrint-PluginSkeleton"), you may define that here. Same goes for the other metadata derived from setup.py that
 # can be overwritten via __plugin_xyz__ control properties. See the documentation for that.
-__plugin_name__ = "Powerswitch Plugin"
+__plugin_name__ = "Power Switch"
+
 
 def __plugin_load__():
 	global __plugin_implementation__

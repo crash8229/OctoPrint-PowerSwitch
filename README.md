@@ -10,7 +10,3 @@ or manually using this URL:
     https://github.com/crash8229/OctoPrint-PowerSwitch/archive/master.zip
 
 
-## Configuration
-
-- **Auto Turn On** Turn to printer automatically on when octoprint starts.
-
