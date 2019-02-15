@@ -1,18 +1,19 @@
 {#<a id="switch" onclick="powertoggle()" data-bind="click: click, visible: visibleTest()" href="#">#}
 
-<a onclick="powertoggle()">
-    <i id="switch" class="icon-power-off" style="color: limegreen"></i>
+{#<a onclick="powertoggle()">#}
+<a id="switch" data-bind="click: switcher">
+    <i class="icon-power-off" style="color: {{ plugin_powerswitch_state|escape }}"></i>
 </a>
 
-<script>
-function powertoggle() {
-    let iconColor = document.getElementById("switch");
-    if("{{ plugin_powerswitch_state|escape }}" === "off") {
-        iconColor.style.color = "limegreen";
-        {% plugin_powerswitch_state = "on" %};
-    } else {
-        iconColor.style.color = "red";
-        {% plugin_powerswitch_state = "off" %};
-    }
-}
-</script>
+{#<script>#}
+{#function powertoggle() {#}
+{#    let iconColor = document.getElementById("switch");#}
+{#    if("{{ plugin_powerswitch_state|escape }}" === "off") {#}
+{#        iconColor.style.color = "limegreen";#}
+{#        {% plugin_powerswitch_state = "on" %};#}
+{#    } else {#}
+{#        iconColor.style.color = "red";#}
+{#        {% plugin_powerswitch_state = "off" %};#}
+{#    }#}
+{#}#}
+{#</script>#}

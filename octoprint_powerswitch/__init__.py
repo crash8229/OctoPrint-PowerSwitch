@@ -15,12 +15,13 @@ import octoprint.plugin
 class PowerswitchPlugin(octoprint.plugin.StartupPlugin,
 						octoprint.plugin.SettingsPlugin,
 						octoprint.plugin.AssetPlugin,
-						octoprint.plugin.TemplatePlugin):
+						octoprint.plugin.TemplatePlugin,
+						octoprint.plugin.SimpleApiPlugin):
 
 	##~~ SettingsPlugin mixin
 
 	def get_settings_defaults(self):
-		return dict(state="on")
+		return dict(state="limegreen")
 
 	##~~ AssetPlugin mixin
 
@@ -35,6 +36,14 @@ class PowerswitchPlugin(octoprint.plugin.StartupPlugin,
 
 	def get_template_vars(self):
 		return dict(state=self._settings.get(["state"]))
+
+	def get_api_commands(self):
+		self._logger.info("Manually triggered get_api")
+		return dict(flip=[])
+
+	def on_api_command(self, command, data):
+		if command == 'flip':
+			self._logger.info("World")
 
 	##~~ Softwareupdate hook
 
@@ -73,4 +82,3 @@ def __plugin_load__():
 	__plugin_hooks__ = {
 		"octoprint.plugin.softwareupdate.check_config": __plugin_implementation__.get_update_information
 	}
-

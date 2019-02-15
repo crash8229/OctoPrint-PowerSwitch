@@ -13,7 +13,12 @@ $(function() {
         // self.settingsViewModel = parameters[1];
 
         // TODO: Implement your plugin's view model here.
+        self.switcher = function () {
+            OctoPrint.logger.info("Hello");
+            OctoPrint.simpleApiCommand("powerswitch", "flip");
+        };
     }
+
 
     /* view model class, parameters for constructor, container to bind to
      * Please see http://docs.octoprint.org/en/master/plugins/viewmodels.html#registering-custom-viewmodels for more details
